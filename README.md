@@ -94,7 +94,9 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
             force.Delete()
       force1.Delete()
     ```
-
+  - Data-driven methods and Model-based methods are compared and simply graphically demonstracte in the following, code and data for those are offered while requested through **huanbo.sunrwth@gmail.com**.
+  
+  <p align="center"><img src="Pics/Positioning_methods.png" width="800" height="400" align="center">
 
 
 
