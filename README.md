@@ -98,7 +98,9 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
   
   <p align="center"><img src="Pics/Positioning_methods.png" width="800" height="400" align="center">
 
-- Sensor assembly: To assembly strain gauge on curved surface needs a bit of patience and tricks. M-BOND AE10 is used as adhesive material to assemble strain gauge on limb internal shell surface. 10 hours are needed for curing, while in-between the strain gauge should be pretightened. Special structure is designed as follows:
+- Sensor assembly: To assemble strain gauge on curved surface needs a bit of patience and tricks. [M-BOND AE10](https://www.micro-measurements.com/pca/accessories/adhesives) is used as adhesive material to assemble strain gauge on limb internal shell surface. 10 hours are needed for curing, while in-between the strain gauge should be pretightened. Special structure is designed for this purpose (easy in easy out):
+
+ <p align="center"><img src="Pics/Pretighten-Structure.png" width="500" height="400" align="center">
 
 
 
