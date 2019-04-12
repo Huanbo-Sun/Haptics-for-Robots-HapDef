@@ -13,6 +13,14 @@ We adapt one open-source project ["Poppy Project-Humanoids"](https://www.poppy-p
 
 In this repository, we introduce haptic feedback in robot's limb, which realizes single-contact and **multi-contact** stimulation localization and quantifization functions.
 ![1](Pics/Project_object.png)
+
 ## Robot's limb design, manufacturing in mechanical aspect
+### Limb design in [Solidworks](https://www.solidworks.com/de)
+- Keep kinematic parameters unchanged
+- In Solidworks, [parametrize](http://help.solidworks.com/2017/english/solidworks/cworks/parameters_2.htm) thickness of the flexible sensing shell and the in-middle placed structure support.
+### Limb design validation in [ANSYS: Workbench-Static Structure](https://www.ansys.com/products/structures)
+- Robustness check, whether the strucutre can support the  whole weight of the robot during its dynamics motion.
+- Flexiablity check, how flexible the outer-shell of the limb is agagist stimulation.
+###
 
 
