@@ -1,6 +1,8 @@
 # Haptics-with-Strain-Gauge
 This project aims at showing the principle design of [virtual sensing](https://en.wikipedia.org/wiki/Virtual_sensing) in robotic applications with haptic functionality using **sparse sensor configuration**.
 
+<p align="center"><img src="Pics/Project_pipline.png" width="800" height="600">
+
 It includes five major parts:
 - Robot's limb design, manufacturing in mechanical aspect.
 - Sensor choice, positioning, assembly, data acquision in mechatronic aspect.
@@ -38,6 +40,11 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 <p align="center"><img src="Pics/Limb_3D_print.png" width="280" height="400" align="center">
   
 ## Sensor choice, positioning, assembly, data acquision in mechantronic aspect
-- Sensor choice: Strain Gauge with high elongation rate for plastic
+- Sensor choice: [Strain Gauge:EP-08-250BF-350](http://docs.micro-measurements.com/?id=2573) with high elongation ratio 20% for plastic application.
+- Sensor supplier: [Micro Measurement](http://docs.micro-measurements.com)
+- Sensor positioning: four methods are compared in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064)
+
+
+
 
 
