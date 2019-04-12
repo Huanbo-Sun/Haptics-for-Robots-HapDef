@@ -162,4 +162,13 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
   - Communication: USB2.0 to hoster.
   
 ## Automatic data collection system in application aspect **Tutorial follows**
--
+- 4 DoF test bed to collect data:
+  - 3 DoF 3D printer: [Flashforge Creator Pro](http://www.flashforge.com/creator-pro-3d-printer/)
+  - 1 Dof Dynamixel [MX28AT](http://support.robotis.com/en/product/actuator/dynamixel/mx_series/mx-28at_ar.htm)
+- Driver:
+  - 3D printer: makerbot_driver
+  - Dynamixel: pypot.dynamixel
+- Code:
+  ``` jupyter notebook
+  
+  ```
