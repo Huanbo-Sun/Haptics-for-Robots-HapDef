@@ -165,10 +165,14 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 - 4 DoF test bed to collect data:
   - 3 DoF 3D printer: [Flashforge Creator Pro](http://www.flashforge.com/creator-pro-3d-printer/)
   - 1 Dof Dynamixel [MX28AT](http://support.robotis.com/en/product/actuator/dynamixel/mx_series/mx-28at_ar.htm)
+  
+<p align="center"><img src="Pics/testbed.png" width="700" height="500" align="center"> 
+  
 - Driver:
   - 3D printer: makerbot_driver
   - Dynamixel: pypot.dynamixel
-- Code:
+- Forcetip: [FC22](https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=FC22&DocType=DS&DocLang=English)
+- Code in python (jupyter notebook)
   ``` jupyter notebook
-  
+   cd /mnt/StorageDevice/PhD/06_Paper/v\?_Frontiers\ in\ NR2018/ICRA2019/SingleTouch/Experiemental_Data
   ```
