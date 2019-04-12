@@ -20,11 +20,11 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 ## Robot's limb design, manufacturing in mechanical aspect
 ### Limb design in [Solidworks](https://www.solidworks.com/de)
 - Keep kinematic parameters unchanged
-- In Solidworks, [parametrize](http://help.solidworks.com/2017/english/solidworks/cworks/parameters_2.htm) thickness of the flexible sensing shell and the in-middle placed structure support. ![#c5f015](Tutorial follows)
+- In Solidworks, [parametrize](http://help.solidworks.com/2017/english/solidworks/cworks/parameters_2.htm) thickness of the flexible sensing shell and the in-middle placed structure support. **Tutorial follows**
 
 <p align="center"><img src="Pics/Limb_design.png" width="280" height="400" align="center">
 
-### Limb design validation in [ANSYS: Workbench-Static Structure](https://www.ansys.com/products/structures)
+### Limb design validation in [ANSYS: Workbench-Static Structure](https://www.ansys.com/products/structures) **Tutorial follows**
 - Robustness check, whether the strucutre can support the  whole weight of the robot during its dynamics motion.
 - Flexiablity check, how flexible the outer-shell of the limb is agagist stimulation.
 - [Material: PA2200](https://www.shapeways.com/rrstatic/material_docs/mds-strongflex.pdf)
@@ -43,7 +43,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 - Sensor choice: [Strain Gauge:EP-08-250BF-350](http://docs.micro-measurements.com/?id=2573) with high elongation ratio 20% for plastic application.
 - Sensor supplier: [Micro Measurement](http://docs.micro-measurements.com)
 - Sensor positioning: four methods are compared in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064)
-  - Collection simulation data in [ANSYS](https://www.ansys.com/products/structures):
+  - Collection simulation data in [ANSYS](https://www.ansys.com/products/structures):**Tutorial follows**
     - In Workbench: Static Structure -> Engineering data (material elastic properties: Young's modulus, Possio's ratio, Density) 
     - In DesignModeler: Geometry design or import
     - In Mechanics: assign material properties to parts -> mesh properties define -> constrains and force define -> solution define.
@@ -94,11 +94,11 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
             force.Delete()
       force1.Delete()
     ```
-  - Data-driven methods and Model-based methods are compared. Code and data for those are offered while requested through **huanbo.sunrwth@gmail.com**. Technical explaination is in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064)
+  - Data-driven methods and Model-based methods are compared. Code and data for those are offered while requested through **huanbo.sunrwth@gmail.com**. Technical explaination is in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064) **Tutorial follows**
   
   <p align="center"><img src="Pics/Positioning_methods.png" width="800" height="400" align="center">
 
-- Sensor assembly: To assemble strain gauge on curved surface needs a bit of patience and tricks. [M-BOND AE10](https://www.micro-measurements.com/pca/accessories/adhesives) is used as adhesive material to assemble strain gauge on limb internal shell surface. 10 hours are needed for curing, while in-between the strain gauge should be pretightened. Special structure is designed for this purpose (easy in easy out):
+- Sensor assembly: To assemble strain gauge on curved surface needs a bit of patience and tricks. [M-BOND AE10](https://www.micro-measurements.com/pca/accessories/adhesives) is used as adhesive material to assemble strain gauge on limb internal shell surface. 10 hours are needed for curing, while in-between the strain gauge should be pretightened. Special structure is designed for this purpose (easy in easy out):**Tutorial follows**
 
  <p align="center"><img src="Pics/Pretighten-Structure.png" width="500" height="400" align="center">
 
