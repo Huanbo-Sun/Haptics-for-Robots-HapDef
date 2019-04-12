@@ -6,8 +6,8 @@ This project shows the principle design of [virtual sensing](https://en.wikipedi
 It includes five major parts:
 - Robot's limb design, manufacturing in mechanical aspect.
 - Sensor choice, positioning, assembly, data acquision in mechatronic aspect.
-- Data postprocessing in functionality aspect.
 - Automatic data collection system in application aspect.
+- Data postprocessing in functionality aspect.
 - System integration in robotic application aspect.
 
 ## Research agent
@@ -160,5 +160,6 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
     }
     ```
   - Communication: USB2.0 to hoster.
-
-
+  
+## Automatic data collection system in application aspect **Tutorial follows**
+-
