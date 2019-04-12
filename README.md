@@ -20,6 +20,8 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 - Keep kinematic parameters unchanged
 - In Solidworks, [parametrize](http://help.solidworks.com/2017/english/solidworks/cworks/parameters_2.htm) thickness of the flexible sensing shell and the in-middle placed structure support.
 
+<p align="center"><img src="Pics/Limb_design.png" width="280" height="400" align="center">
+
 ### Limb design validation in [ANSYS: Workbench-Static Structure](https://www.ansys.com/products/structures)
 - Robustness check, whether the strucutre can support the  whole weight of the robot during its dynamics motion.
 - Flexiablity check, how flexible the outer-shell of the limb is agagist stimulation.
@@ -33,6 +35,8 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
   - [Datasheet](https://www.shapeways.com/rrstatic/material_docs/mds-strongflex.pdf)
 - Printing approach: [Selective Laser Sintering](https://en.wikipedia.org/wiki/Selective_laser_sintering)
 
+<p align="center"><img src="Pics/Limb_3D_print.png" width="280" height="400" align="center">
+  
 ## Sensor choice, positioning, assembly, data acquision in mechantronic aspect
 - Sensor choice: Strain Gauge with high elongation rate for plastic
 
