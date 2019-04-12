@@ -14,4 +14,6 @@ We adapt one open-source project "Poppy Project-Humanoids" and make contribution
 In this repository, we introduce haptic feedback in robot's limb, which realizes single-contact and multi-contact stimulation localization and quantifization functions.
 
 ## Robot's limb design, manufacturing in mechanical aspect
-![GitHub Logo](/images/logo.png)
+![1](Pics/Project_object.png)
+
+
