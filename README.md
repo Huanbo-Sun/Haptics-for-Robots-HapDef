@@ -20,7 +20,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 ## Robot's limb design, manufacturing in mechanical aspect
 ### Limb design in [Solidworks](https://www.solidworks.com/de)
 - Keep kinematic parameters unchanged
-- In Solidworks, [parametrize](http://help.solidworks.com/2017/english/solidworks/cworks/parameters_2.htm) thickness of the flexible sensing shell and the in-middle placed structure support. **Tutorial follows**
+- In Solidworks, [parametrize](http://help.solidworks.com/2017/english/solidworks/cworks/parameters_2.htm) thickness of the flexible sensing shell and the in-middle placed structure support. ([Model](Hardware/))
 
 <p align="center"><img src="Pics/Limb_design.png" width="280" height="400" align="center">
 
