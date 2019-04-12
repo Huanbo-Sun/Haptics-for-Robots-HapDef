@@ -1,5 +1,5 @@
 # Haptics-with-Strain-Gauge
-This project aims at showing the principle design of [virtual sensing](https://en.wikipedia.org/wiki/Virtual_sensing) in robotic applications with haptic functionality using **sparse sensor configuration**.
+This project shows the principle design of [virtual sensing](https://en.wikipedia.org/wiki/Virtual_sensing) in robotic system with haptic feedback using **sparse sensor configuration**.
 
 <p align="center"><img src="Pics/Project_pipline.png" width="1000" height="600">
 
@@ -11,7 +11,7 @@ It includes five major parts:
 - System integration in robotic application aspect.
 
 ## Research agent
-We adapt one open-source project ["Poppy Project-Humanoids"](https://www.poppy-project.org/en/) and make contributions to optimize the hardware, software, and web tools.
+We adopt one open-source project ["Poppy Project-Humanoids"](https://www.poppy-project.org/en/) and make contributions to optimize the hardware, software, and web tools.
 
 In this repository, we introduce haptic feedback in robot's limb, which realizes single-contact and **multi-contact** stimulation localization and quantifization functions.
 
@@ -20,7 +20,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 ## Robot's limb design, manufacturing in mechanical aspect
 ### Limb design in [Solidworks](https://www.solidworks.com/de)
 - Keep kinematic parameters unchanged
-- In Solidworks, [parametrize](http://help.solidworks.com/2017/english/solidworks/cworks/parameters_2.htm) thickness of the flexible sensing shell and the in-middle placed structure support.
+- In Solidworks, [parametrize](http://help.solidworks.com/2017/english/solidworks/cworks/parameters_2.htm) thickness of the flexible sensing shell and the in-middle placed structure support. ![#c5f015](Tutorial follows)
 
 <p align="center"><img src="Pics/Limb_design.png" width="280" height="400" align="center">
 
@@ -44,8 +44,8 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 - Sensor supplier: [Micro Measurement](http://docs.micro-measurements.com)
 - Sensor positioning: four methods are compared in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064)
   - Collection simulation data in [ANSYS](https://www.ansys.com/products/structures):
-    - In Workbench: select Static Structure -> modify Engineering data (material elastic properties: Young's modulus, Possio's ratio, Density) 
-    - In DesignModeler: design the Geometry or import Geometry from [Solidworks](https://www.solidworks.com/de).
+    - In Workbench: Static Structure -> Engineering data (material elastic properties: Young's modulus, Possio's ratio, Density) 
+    - In DesignModeler: Geometry design or import
     - In Mechanics: assign material properties to parts -> mesh properties define -> constrains and force define -> solution define.
     - Automative data collection: iPython in ANSYS Mechanics, Console API (code example for random double nodal forces on surface)
     ``` IPython
@@ -94,7 +94,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
             force.Delete()
       force1.Delete()
     ```
-  - Data-driven methods and Model-based methods are compared and simply graphically demonstrated in the following. Code and data for those are offered while requested through **huanbo.sunrwth@gmail.com**. Technical explaination is in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064)
+  - Data-driven methods and Model-based methods are compared. Code and data for those are offered while requested through **huanbo.sunrwth@gmail.com**. Technical explaination is in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064)
   
   <p align="center"><img src="Pics/Positioning_methods.png" width="800" height="400" align="center">
 
