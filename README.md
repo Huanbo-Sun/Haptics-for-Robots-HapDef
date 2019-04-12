@@ -1,7 +1,7 @@
 # Haptics-with-Strain-Gauge
 This project aims at showing the principle design of [virtual sensing](https://en.wikipedia.org/wiki/Virtual_sensing) in robotic applications with haptic functionality using **sparse sensor configuration**.
 
-<p align="center"><img src="Pics/Project_pipline.png" width="800" height="600">
+<p align="center"><img src="Pics/Project_pipline.png" width="1000" height="600">
 
 It includes five major parts:
 - Robot's limb design, manufacturing in mechanical aspect.
@@ -43,6 +43,16 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 - Sensor choice: [Strain Gauge:EP-08-250BF-350](http://docs.micro-measurements.com/?id=2573) with high elongation ratio 20% for plastic application.
 - Sensor supplier: [Micro Measurement](http://docs.micro-measurements.com)
 - Sensor positioning: four methods are compared in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064)
+  - Collection simulation data in [ANSYS](https://www.ansys.com/products/structures):
+    - In Workbench: select Static Structure -> modify Engineering data (material elastic properties: Young's modulus, Possio's ratio, Density) 
+    - In DesignModeler: design the Geometry or import Geometry from [Solidworks](https://www.solidworks.com/de).
+    - In Mechanics: assign material properties to parts -> mesh properties define -> constrains and force define -> solution define.
+    - Automative data collection: iPython in ANSYS Mechanics, Console API
+    ``` IPython
+    
+    ```
+    ```iPython in ANSYS
+    ```
 
 
 
