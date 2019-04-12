@@ -1,6 +1,7 @@
 # Haptics-with-Strain-Gauge
 This project aims at showing the principle design of [virtual sensing](https://en.wikipedia.org/wiki/Virtual_sensing) in robotic applications with haptic functionality using **sparse sensor configuration**.
 
+<p align="center"><img src="Pics/Project_pipline.png" width="800" height="600">
 
 It includes five major parts:
 - Robot's limb design, manufacturing in mechanical aspect.
