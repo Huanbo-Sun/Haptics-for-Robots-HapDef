@@ -102,7 +102,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 
  <p align="center"><img src="Pics/Pretighten-Structure.png" width="500" height="400" align="center">
 
-- Data aquisition: [Wheastone bridge](https://en.wikipedia.org/wiki/Wheatstone_bridge):
+- Data aquisition: [Wheastone bridge](https://en.wikipedia.org/wiki/Wheatstone_bridge):**Tutorial follows**
   - Layout Type: Quarter bridge (1. use global temperatur compensation, 2. other solutions [BME280](https://www.bosch-sensortec.com/bst/products/all_products/bme280) due to physical limits)
   - Operational Amplifier: [MCP609](http://ww1.microchip.com/downloads/en/DeviceDoc/11177f.pdf)
   - ADC and MCU: [Arduino Due 3.3V](https://store.arduino.cc/due)
@@ -158,7 +158,6 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 
       delay(100);
     }
-    
     ```
   - Communication: USB2.0 to hoster.
 
