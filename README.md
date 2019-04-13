@@ -48,8 +48,10 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
   
   <p align="center"><img src="Pics/Positioning_methods.png" width="800" height="400" align="center">
 
-- Sensor assembly:[Tutorial](Hardware/Assembly/Assembly.md)
+- Sensor assembly:
   - Adhesive:[M-BOND AE10](https://www.micro-measurements.com/pca/detail/5c49d0afeaf7657493741ba9)
+  - Support Structure(SS):
+  <p align="center"><img src="Pics/Pretighten-Structure.png" width="800" height="400" align="center">  
   - Assembly Process:
 
  <p align="center"><img src="Pics/Assemly_Process.png" width="800" height="600" align="center">
