@@ -33,14 +33,14 @@
     yy = sklearn_pca.transform(np.eye(deformation_data.shape[1]))
     Q,R,P = sp.linalg.qr(yy.T, pivoting=True)
     P = P[:,None].T
-    c = np.zeros((i,deformation_data.shape[1]))
+    position_indicis = np.zeros((i,deformation_data.shape[1]))
     for j in range(i):
-        c[j,P[0,j]] = 1
-    s1 = np.dot(c,deformation_data.T)
-    s2 = np.linalg.inv(np.dot(c,yy))
+        position_indicis[j,P[0,j]] = 1
+    s1 = np.dot(position_indicis,deformation_data.T)
+    s2 = np.linalg.inv(np.dot(position_indicis,yy))
     s3 = np.dot(s2 ,s1)
-    x_pre = np.dot(yy, s3)
-    error[i] = sum(np.linalg.norm(np.subtract(x_pre.T,deformation_data),axis = 1))/sum(np.linalg.norm(deformation_data,axis = 1))
+    deformation_prediction = np.dot(yy, s3)
+    error[i] = sum(np.linalg.norm(np.subtract(deformation_prediction.T,deformation_data),axis = 1))/sum(np.linalg.norm(deformation_data,axis = 1))
   ```
   - Entropy Minimization
   - Mutual information Maximization
