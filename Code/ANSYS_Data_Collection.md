@@ -21,7 +21,7 @@ model = ExtAPI.DataModel.Project.Model
 static_structural = model.Analyses[0]
 analysis_settings = static_structural.AnalysisSettings.NumberOfSteps=1 
 path=ExtAPI.DataModel.AnalysisList[0].WorkingDir.Split("\\")
-force_info =  open(string.join(path[:len(path)-2],"\\")+"\\"+"03_TwoForce_Direction.txt")
+force_info =  open(string.join(path[:len(path)-2],"\\")+"\\"+"Force_info.txt")
 a =force_info.read()
 b = a.Split('\n')
 
@@ -38,26 +38,13 @@ for i in range(3255):
   force.XComponent.Output.DiscreteValues = [Quantity(str(c[1])+" [N]")]
   force.ZComponent.Output.DiscreteValues = [Quantity(str(c[3])+" [N]")]
 
-  sel1 = model.AddNamedSelection()
-  sel1.Name=str(i+2)
-  selws1 = ExtAPI.SelectionManager.CreateSelectionInfo(SelectionTypeEnum.MeshNodes)
-  selws1.Ids =[int(float(c[4]))]
-  sel1.Location =selws1
-
-  force1 = static_structural.AddNodalForce()
-  force1.Location = model.NamedSelections.Children[1]
-  force1.XComponent.Output.DiscreteValues = [Quantity(str(c[5])+" [N]")]
-  force1.ZComponent.Output.DiscreteValues = [Quantity(str(c[7])+" [N]")]
-
   solution  = model.Analyses[0].Solution
   total_deformation = solution.AddTotalDeformation()
   static_structural.Solve(True)
   total_deformation.Name = str(i+1)
 
-  total_deformation.ExportToTextFile(True, string.join(path[:len(path)-2],"\\")+"\\"+"two"+str(i+1)+".txt")
+  total_deformation.ExportToTextFile(True, string.join(path[:len(path)-2],"\\")+"\\"+"Deformation_info"+str(i+1)+".txt")
   total_deformation.Delete()
-        sel.Delete()
-  sel1.Delete()	
-        force.Delete()
-  force1.Delete()
+  sel.Delete()
+  force.Delete()
 ```
