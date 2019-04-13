@@ -50,7 +50,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 
 - Sensor assembly:[Tutorial](Hardware/Assembly/Assembly.md)
   - Adhesive:[M-BOND AE10](https://www.micro-measurements.com/pca/detail/5c49d0afeaf7657493741ba9)
-  - Pretightedn structure:
+  - Pretighten structure:
 
  <p align="center"><img src="Pics/Pretighten-Structure.png" width="500" height="400" align="center">
 
