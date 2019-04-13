@@ -26,7 +26,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 
 ### Limb design validation in [ANSYS: Workbench-Static Structure](https://www.ansys.com/products/structures)
 - Robustness check: whether the strucutre can support the  whole weight of the robot during its dynamics motion?([Model](Hardware/ANSYS/01_Weight_Test))
-- Flexiablity check: how flexible the outer-shell of the limb is agagist stimulation?([Model](Hardware/ANSYS/01_Skin_Test))
+- Flexiablity check: how flexible the outer-shell of the limb is agagist stimulation?([Model](Hardware/ANSYS/02_Skin_Test))
 - Material:[PA2200](https://www.shapeways.com/rrstatic/material_docs/mds-strongflex.pdf)
 
 <p align="center"><img src="Pics/Limb_design_validation.png" width="280" height="320" align="center">
