@@ -1,4 +1,4 @@
-# Data-driven and Model-based methods are compared in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064)
+# Data-driven and Model-based methods to select optimal sensor positions are compared in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064)
   
   <p align="center"><img src="../Pics/Positioning_methods.png" width="800" height="400" align="center">
   
