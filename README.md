@@ -52,7 +52,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
   - Adhesive:[M-BOND AE10](https://www.micro-measurements.com/pca/detail/5c49d0afeaf7657493741ba9)
   - Assembly components:
 
- <p align="center"><img src="Pics/Assembly.png" width="500" height="400" align="center">
+ <p align="center"><img src="Pics/Assembly_Process.png" width="500" height="400" align="center">
 
 - Data aquisition: [Wheastone bridge](https://en.wikipedia.org/wiki/Wheatstone_bridge):**Tutorial follows**
   - Layout Type: Quarter bridge (1. use global temperatur compensation, 2. other solutions [BME280](https://www.bosch-sensortec.com/bst/products/all_products/bme280) due to physical limits)
