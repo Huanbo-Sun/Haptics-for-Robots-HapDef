@@ -48,7 +48,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
   
   <p align="center"><img src="Pics/Positioning_methods.png" width="800" height="400" align="center">
 
-- Sensor assembly: To assemble strain gauge on curved surface needs a bit of patience and tricks.[Tutorial](Hardware/Assembly/Assembly.md)
+- Sensor assembly:[Tutorial](Hardware/Assembly/Assembly.md)
   - Adhesive:[M-BOND AE10](https://www.micro-measurements.com/pca/detail/5c49d0afeaf7657493741ba9)
   - Pretightedn structure:
 
