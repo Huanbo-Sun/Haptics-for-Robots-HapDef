@@ -8,23 +8,26 @@
   ```Jupyter Notebook
   # Data: deformation_data [3255 forces, 2162 sensor nodals], sensor_position [2162 nodals, 4 dimensions], force_data [3255 forces, 4 dimensions]
   # Package: from sklearn.model_selection import train_test_split, from sklearn.svm import SVR, from sklearn.multioutput import MultiOutputRegressor, import numpy
-  
+
   # Function: Machine learning parameter confirmation using k-fold validation
+  ## Data
   x_train1 = deformation_data
   y_train1 = force_data[;,1:]
+
   x_train2,x_valid1,y_train2,y_valid1 = train_test_split(x_train1,y_train1,test_size=0.2)
   x_train3,x_valid2,y_train3,y_valid2 = train_test_split(x_train2,y_train2,test_size=0.25)
   x_train4,x_valid3,y_train4,y_valid3 = train_test_split(x_train3,y_train3,test_size=0.333)
   x_valid5,x_valid4,y_valid5,y_valid4 = train_test_split(x_train4,y_train4,test_size=0.5)
-  
+
   x_train0 =np.vstack((x_valid2,x_valid3,x_valid4,x_valid5))
   y_train0 =np.vstack((y_valid2,y_valid3,y_valid4,y_valid5))
-  l = []
-  for idc  in range(5):
+
+  ## Error comparison
+  Error = []
+  for index_c  in range(5):
       error = []
-      for ide in range(8):
-          print(ide)
-          clf = SVR(C=10**(idc-2), epsilon =10**(-ide))
+      for index_epsilon in range(8):
+          clf = SVR(C=10**(index_c-2), epsilon =10**(-index_epsilon))
           clf.fit(x_train0,y_train0[:,0])
           y_pre0 = clf.predict(x_valid1)
           clf.fit(x_train0,y_train0[:,1])
@@ -33,97 +36,63 @@
           y_pre2 = clf.predict(x_valid1)
           y_pre = np.vstack([y_pre0,y_pre1,y_pre2]).T
           error = np.append(error,np.sum(np.linalg.norm(y_pre - y_valid1, axis=1))/y_valid1.shape[0])
-      l = np.append(l,error)
-    
-  # Function: Select and save 1-30 optimal sensor positions.
-  x_train1 = np.loadtxt("../02_Data_Processing/00_train_sensor.txt",dtype=float)
-  y_train1 = np.loadtxt("../02_Data_Processing/00_train_force.txt",dtype=float,usecols=(1,2,3))
-  x_train2,x_valid1,y_train2,y_valid1 = train_test_split(x_train1,y_train1,test_size=0.2)
-  x_train3,x_valid2,y_train3,y_valid2 = train_test_split(x_train2,y_train2,test_size=0.25)
-  x_train4,x_valid3,y_train4,y_valid3 = train_test_split(x_train3,y_train3,test_size=0.333)
-  x_valid5,x_valid4,y_valid5,y_valid4 = train_test_split(x_train4,y_train4,test_size=0.5)
+      Error.append(error)
 
+  # Function: Select and save 1-30 optimal sensor positions.
   error = np.zeros((30))
   clf = SVR(C=0.1, epsilon =10**(-4))
   position_indicis = np.linspace(0,2161,2162)
 
   x_train01 =np.vstack((x_valid2,x_valid3,x_valid4,x_valid5))
   y_train01 =np.vstack((y_valid2,y_valid3,y_valid4,y_valid5))
-  x_train02 =np.vstack((x_valid1,x_valid3,x_valid4,x_valid5))
-  y_train02 =np.vstack((y_valid1,y_valid3,y_valid4,y_valid5))
-  x_train03 =np.vstack((x_valid1,x_valid2,x_valid4,x_valid5))
-  y_train03 =np.vstack((y_valid1,y_valid2,y_valid4,y_valid5))
-  x_train04 =np.vstack((x_valid1,x_valid2,x_valid3,x_valid5))
-  y_train04 =np.vstack((y_valid1,y_valid2,y_valid3,y_valid5))
-  x_train05 =np.vstack((x_valid1,x_valid2,x_valid3,x_valid4))
-  y_train05 =np.vstack((y_valid1,y_valid2,y_valid3,y_valid4))
 
-  x_train_PCA_SVR01 = np.zeros((x_train01.shape[0],1))
-  x_test_PCA_SVR01 = np.zeros((x_valid1.shape[0],1))
-  x_train_PCA_SVR02 = np.zeros((x_train02.shape[0],1))
-  x_test_PCA_SVR02 = np.zeros((x_valid2.shape[0],1))
-  x_train_PCA_SVR03 = np.zeros((x_train03.shape[0],1))
-  x_test_PCA_SVR03 = np.zeros((x_valid3.shape[0],1))
-  x_train_PCA_SVR04 = np.zeros((x_train04.shape[0],1))
-  x_test_PCA_SVR04 = np.zeros((x_valid4.shape[0],1))
-  x_train_PCA_SVR05 = np.zeros((x_train05.shape[0],1))
-  x_test_PCA_SVR05 = np.zeros((x_valid5.shape[0],1))
-  
-  def errorr(x_train_PCA_SVR,x_test_PCA_SVR,x_train,y_train,x_valid,y_valid,k):
-    x_train_PCA_SVR = np.hstack((x_train_PCA_SVR,x_train[:,int(k)][:,None]))
-    x_test_PCA_SVR = np.hstack((x_test_PCA_SVR,x_valid[:,int(k)][:,None]))
-    if x_train_PCA_SVR[0,0]== 0:
-        x_train_PCA_SVR = np.delete(x_train_PCA_SVR,0,1)
-        x_test_PCA_SVR = np.delete(x_test_PCA_SVR,0,1)
-    clf.fit(x_train_PCA_SVR,y_train[:,0])
-    y_pre0 = clf.predict(x_test_PCA_SVR)
-    clf.fit(x_train_PCA_SVR,y_train[:,1])
-    y_pre1 = clf.predict(x_test_PCA_SVR)
-    clf.fit(x_train_PCA_SVR,y_train[:,2])
-    y_pre2 = clf.predict(x_test_PCA_SVR)
-    y_pre = np.vstack([y_pre0,y_pre1,y_pre2]).T
-    err = sum(np.linalg.norm(np.subtract(y_pre,y_valid),axis = 1))/y_pre.shape[0]
-    x_train_PCA_SVR = np.delete(x_train_PCA_SVR,-1,1)
-    x_test_PCA_SVR = np.delete(x_test_PCA_SVR,-1,1)
-    return(err) 
-    
+  x_train_SVR01 = np.zeros((x_train01.shape[0],1))
+  x_test_SVR01 = np.zeros((x_valid1.shape[0],1))
+
+  def error_r(x_train_SVR,x_test_SVR,x_train,y_train,x_valid,y_valid,k):
+      x_train_SVR = np.hstack((x_train_SVR,x_train[:,int(k)][:,None]))
+      x_test_SVR = np.hstack((x_test_SVR,x_valid[:,int(k)][:,None]))
+      if x_train_SVR[0,0]== 0:
+          x_train_PCA_SVR = np.delete(x_train_PCA_SVR,0,1)
+          x_test_PCA_SVR = np.delete(x_test_PCA_SVR,0,1)
+      clf.fit(x_train_PCA_SVR,y_train[:,0])
+      y_pre0 = clf.predict(x_test_PCA_SVR)
+      clf.fit(x_train_PCA_SVR,y_train[:,1])
+      y_pre1 = clf.predict(x_test_PCA_SVR)
+      clf.fit(x_train_PCA_SVR,y_train[:,2])
+      y_pre2 = clf.predict(x_test_PCA_SVR)
+      y_pre = np.vstack([y_pre0,y_pre1,y_pre2]).T
+      err = sum(np.linalg.norm(np.subtract(y_pre,y_valid),axis = 1))/y_pre.shape[0]
+      x_train_PCA_SVR = np.delete(x_train_PCA_SVR,-1,1)
+      x_test_PCA_SVR = np.delete(x_test_PCA_SVR,-1,1)
+      return(err) 
+
   nr = np.zeros(30)
   for i in range(30):
       err = np.zeros((aa.shape[0]))
       j=0
       for k in aa:
-          err1 = errorr(x_train_PCA_SVR01,x_test_PCA_SVR01,x_train01,y_train01,x_valid1,y_valid1,k)
-          err2 = errorr(x_train_PCA_SVR02,x_test_PCA_SVR02,x_train02,y_train02,x_valid2,y_valid2,k)
-          err3 = errorr(x_train_PCA_SVR03,x_test_PCA_SVR03,x_train03,y_train03,x_valid3,y_valid3,k)
-          err4 = errorr(x_train_PCA_SVR04,x_test_PCA_SVR04,x_train04,y_train04,x_valid4,y_valid4,k)
-          err5 = errorr(x_train_PCA_SVR05,x_test_PCA_SVR05,x_train05,y_train05,x_valid5,y_valid5,k)
+          err1 = error_r(x_train_SVR01,x_test_SVR01,x_train01,y_train01,x_valid1,y_valid1,k)
+          err2 = error_r(x_train_SVR02,x_test_SVR02,x_train02,y_train02,x_valid2,y_valid2,k)
           err[j] = (err1+err2+err3+err4+err5)/5
           j=j+1
 
       error[i]=np.min(err)
       aaa = np.argmin(err)
-      x_train_PCA_SVR01 = np.hstack((x_train_PCA_SVR01,x_train01[:,int(position_indicis[aaa])][:,None]))
-      x_test_PCA_SVR01 = np.hstack((x_test_PCA_SVR01,x_valid1[:,int(position_indicis[aaa])][:,None]))
-      x_train_PCA_SVR02 = np.hstack((x_train_PCA_SVR02,x_train02[:,int(position_indicis[aaa])][:,None]))
-      x_test_PCA_SVR02 = np.hstack((x_test_PCA_SVR02,x_valid2[:,int(position_indicis[aaa])][:,None]))
-      x_train_PCA_SVR03 = np.hstack((x_train_PCA_SVR03,x_train03[:,int(position_indicis[aaa])][:,None]))
-      x_test_PCA_SVR03 = np.hstack((x_test_PCA_SVR03,x_valid3[:,int(position_indicis[aaa])][:,None]))
-      x_train_PCA_SVR04 = np.hstack((x_train_PCA_SVR04,x_train04[:,int(position_indicis[aaa])][:,None]))
-      x_test_PCA_SVR04 = np.hstack((x_test_PCA_SVR04,x_valid4[:,int(position_indicis[aaa])][:,None]))
-      x_train_PCA_SVR05 = np.hstack((x_train_PCA_SVR05,x_train05[:,int(position_indicis[aaa])][:,None]))
-      x_test_PCA_SVR05 = np.hstack((x_test_PCA_SVR05,x_valid5[:,int(position_indicis[aaa])][:,None]))
+      x_train_SVR01 = np.hstack((x_train_SVR01,x_train01[:,int(position_indicis[aaa])][:,None]))
+      x_test_SVR01 = np.hstack((x_test_SVR01,x_valid1[:,int(position_indicis[aaa])][:,None]))
+      x_train_SVR02 = np.hstack((x_train_SVR02,x_train02[:,int(position_indicis[aaa])][:,None]))
+      x_test_SVR02 = np.hstack((x_test_SVR02,x_valid2[:,int(position_indicis[aaa])][:,None]))
 
       nr[i] = position_indicis[aaa]
       position_indicis = np.delete(position_indicis,aaa)
-      
-    aaaposition = sensor_position
-    greedypos = np.zeros((30,4))
-    count = 0
-    for k in nr:
-        print(k)
-        greedypos[count,:]=aaaposition[int(k),:]
-        count = count+1
-    np.savetxt("Greedy_SVR_kfold_Positions.txt",greedypos, delimiter=' ')
+
+      greedypos = np.zeros((30,4))
+      count = 0
+      for k in nr:
+          greedypos[count,:]=sensor_position[int(k),:]
+          count += 1
+  np.savetxt("Greedy_SVR_kfold_Positions.txt",greedypos, delimiter=' ')
   ```
   - PCA QR Pivoting(Choose first 30 optimal positions)
   ```Jupyter Notebook
