@@ -2,8 +2,7 @@
   
   <p align="center"><img src="../Pics/Positioning_methods.png" width="800" height="400" align="center">
   
-- [Data](../Data/)
-
+- **Data** is available on request through **huabo.sunrwth@gmail.com**
 - Code:
   - Greedy Support Vector Regression
   ```Jupyter Notebook
