@@ -43,8 +43,8 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 - Sensor choice: [Strain Gauge:EP-08-250BF-350](http://docs.micro-measurements.com/?id=2573) with high elongation ratio 20% for plastic application.
 - Sensor supplier: [Micro Measurement](http://docs.micro-measurements.com)
 - Sensor positioning: four methods are compared in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064)
-  - Collection simulation data:[Tutorial](Code/ANSYS_Data_Collection.md)
-  - Data-driven methods and Model-based methods are compared. Code and data for those are offered while requested through **huanbo.sunrwth@gmail.com**. Technical explaination is in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064) [Tutorial](Code/ANSYS_Data_Collection.md)
+  - Collection of simulation data:[Tutorial](Code/ANSYS_Data_Collection.md)
+  - Data-driven methods and Model-based methods are compared in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064). [Tutorial](Code/Optimal_positioning.md)
   
   <p align="center"><img src="Pics/Positioning_methods.png" width="800" height="400" align="center">
 
