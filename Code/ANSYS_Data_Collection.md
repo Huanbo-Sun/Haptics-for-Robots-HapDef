@@ -1,6 +1,7 @@
 # Collection of simulation data in a automatic manner with [ANSYS](https://www.ansys.com/products/structures):
--In Workbench: Static Structure -> Engineering data (material elastic properties: Young's modulus, Possio's ratio, Density) 
-- In DesignModeler: Geometry design or import
+- In Workbench: Static Structure -> Engineering data (material elastic properties: Young's modulus, Possio's ratio, Density)
+
+- In Geometry: (SpaceClaim) Geometry design or import
 - In Mechanics: assign material properties to parts -> mesh properties define -> constrains and force define -> solution define.
 - Automative data collection: iPython in ANSYS Mechanics, Console API (code example for random double nodal forces on surface)
 ``` IPython
