@@ -163,6 +163,169 @@
     error[i] = sum(np.linalg.norm(np.subtract(deformation_prediction.T,deformation_data),axis = 1))/sum(np.linalg.norm(deformation_data,axis = 1))
   ```
   - Entropy Minimization
-  - Mutual information Maximization
+  ```Jupyter Notebook
+  # Data: sensor_position_candidate [2162 nodals, 4 dimensions], sensor_position_all [3726 nodals, 4 dimensions]
+  # Package: import numpy
+  
+  # Function: Kernel definition
+  def gp_kernel1(sita,x,y):
+      if np.sum(x.shape)<4:
+          x = x[None,:]
+      if np.sum(y.shape)<4:
+          y = y[None,:]
+      gpcovariance = np.zeros((x.shape[0],y.shape[0]))
+      ry = 0.4292
+      rxy1 = np.sqrt(x[:,0]**2+x[:,2]**2)
+      rxy2 = np.sqrt(y[:,0]**2+y[:,2]**2)
+      angle1 = np.arctan2(x[:,2],x[:,0])
+      angle2 = np.arctan2(y[:,2],y[:,0])
+      for j in range(y.shape[0]):
+          for i in range(x.shape[0]):
+              dy_ = np.sqrt((x[i,1]-y[j,1])**2+(rxy1[i]-rxy2[j])**2)
+              dy__ = 2*ry*np.arcsin((dy_/2)/ry)
 
+              angle = np.abs(angle1[i] - angle2[j])
+              if angle > np.pi:
+                  angle = 2*np.pi-angle
+              dxz__ = (rxy1[i]+rxy2[j])/2*angle
+
+              index = np.sqrt((dy__**2+dxz__**2)) 
+              gpcovariance[i,j] = np.exp(-index**2/sita**2)
+       return(np.around(gpcovariance,decimals=10))
+    
+  # Function: Optimal sensor position selection
+  A = np.zeros((1,4))
+  uncertainty = []
+  sita_min=0.0044 # because of cauculation precision
+  sita_max =0.022 # because of entropy bigger than 0
+  sita = 0.0175
+  k_base = gp_kernel1(sita,S[:,1:4],S[:,1:4])
+
+  firsta = np.argmin(np.sum(k_base,axis=0))
+  A = S[firsta,:][None,:]
+
+  for i in range(S.shape[0]):
+      if S[i,0] == A[0,0]:
+          S =np.delete(S,i,axis=0)
+          break
+
+  for j in range(29):
+      print(j)
+      delta = np.zeros((S.shape[0]))
+      count = 0
+      for y in range(S.shape[0]):
+          k1 = 1
+          k2 = gp_kernel1(sita,S[y,1:4],A[:,1:4])
+          k3 = gp_kernel1(sita,A[:,1:4],A[:,1:4])
+          delta[count] = k1 - np.matmul(k2, np.matmul(np.linalg.inv(k3),k2.T))
+          if delta[count]<0.5/(np.pi*np.e): # Entropy less than 0
+              print(j,'---->',count)
+          count = count + 1
+      a =np.argmax(delta)
+      uncertainty = np.append(uncertainty,np.max(delta))
+      A = np.vstack((A, S[a,:]))
+      S= np.delete(S,a,0)
+  ```
+  - Mutual information Maximization
+  ```Jupyter Notebook
+    # Data: sensor_position_candidate [2162 nodals, 4 dimensions], sensor_position_all [3726 nodals, 4 dimensions]
+    # Package: import numpy
+
+    # Function: Kernel definition
+    def gp_kernel1(sita,x,y):
+        if np.sum(x.shape)<4:
+            x = x[None,:]
+        if np.sum(y.shape)<4:
+            y = y[None,:]
+        gpcovariance = np.zeros((x.shape[0],y.shape[0]))
+        ry = 0.4292
+        rxy1 = np.sqrt(x[:,0]**2+x[:,2]**2)
+        rxy2 = np.sqrt(y[:,0]**2+y[:,2]**2)
+        angle1 = np.arctan2(x[:,2],x[:,0])
+        angle2 = np.arctan2(y[:,2],y[:,0])
+        for j in range(y.shape[0]):
+            for i in range(x.shape[0]):
+                dy_ = np.sqrt((x[i,1]-y[j,1])**2+(rxy1[i]-rxy2[j])**2)
+                dy__ = 2*ry*np.arcsin((dy_/2)/ry)
+
+                angle = np.abs(angle1[i] - angle2[j])
+                if angle > np.pi:
+                    angle = 2*np.pi-angle
+                dxz__ = (rxy1[i]+rxy2[j])/2*angle
+
+                index = np.sqrt((dy__**2+dxz__**2)) 
+                gpcovariance[i,j] = np.exp(-index**2/sita**2)
+         return(np.around(gpcovariance,decimals=10))
+
+    # Function: Optimal sensor position selection
+    sita = 0.0175
+    for i in range(S.shape[0]):
+        count = 0
+        for j in range(V.shape[0]):
+            if S[i,0] ==V[j,0]:
+                count = count + 1
+        if count ==0:
+            V= np.vstack((V, S[i,:]))
+    print(V.shape)
+
+    A = np.zeros((1,4))
+    A_ = np.copy(V)
+    
+    uncertainty = []
+    k_base1 = gp_kernel1(sita,S[:,1:4],S[:,1:4])
+    for i in range(30):
+        print(i)
+        k_base2 = gp_kernel1(sita,A_[:,1:4],A_[:,1:4])
+        k1 = 1
+        k1_ = 1
+        delta = np.zeros(S.shape[0])
+        if i==0:
+            k_base3=1
+            for y in range(S.shape[0]):
+                k2 = np.delete(np.copy(k_base1[y,:]),y)
+                k3 = 1
+                for j in range(A_.shape[0]):
+                    if S[y,0]==A_[j,0]:
+                        k2_ = np.delete(np.copy(k_base2[j,:]),j)
+                        k3_ = np.delete(np.delete(np.copy(k_base2),j,axis=0),j,axis=1)
+                        break
+                d1 = (k1-np.dot(k2,k2.T)/(S.shape[0]-1))
+                d2 = (k1_-np.dot(k2_,np.dot(np.linalg.inv(k3_),k2_.T)))
+    #             if d1<0 or d2<0: # Entropy less than 0
+    #                 print(j,'---->',count)
+                if np.linalg.det(k3_) < 0:
+                    print("not pd")
+                delta[y] = d1/d2
+
+        else:
+            k_base3 = gp_kernel1(sita,A[:,1:4],A[:,1:4])
+            for y in range(S.shape[0]):
+                k2 = gp_kernel1(sita,S[y,1:4],A[:,1:4])
+                k3 = np.copy(k_base3)
+                for j in range(A_.shape[0]): 
+                    if S[y,0] == A_[j,0]:
+                        k2_ = np.delete(np.copy(k_base2[j,:]),j)
+                        k3_ = np.delete(np.delete(np.copy(k_base2),j,axis=0),j,axis=1)
+                        break
+                d1 = (k1-np.dot(k2,np.dot(np.linalg.inv(k3),k2.T)))
+                d2 = (k1_-np.dot(k2_,np.dot(np.linalg.inv(k3_),k2_.T)))
+                delta[y] = d1/d2 
+    #             if d1<0 or d2<0: # Entropy less than 0
+    #                 print(j,'---->',count)
+                if np.linalg.det(k3_) < 0 or np.linalg.det(k3)<0:
+                    print("not pd k3_")
+
+        a = np.argmax(delta)
+        uncertainty = np.append(uncertainty,np.max(delta))
+        if i == 0:
+            A = S[a,:][None,:]
+        else:
+            A = np.vstack((A, S[a,:]))
+        for j in range(A_.shape[0]):
+            if A[A.shape[0]-1,0]==A_[j,0]:
+                A_ = np.delete(A_,j,0)
+                break
+        S = np.delete(S, a, 0)
+    np.savetxt("../02_Data_Processing/02_Mutual_Information/01_MI_Positions.txt",A,delimiter=' ')
+    ```
 With no hesitation to contact **huanbo.sunrwth@gmail.com** for unclear explaination. 
