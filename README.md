@@ -43,7 +43,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 - Sensor choice: [Strain Gauge:EP-08-250BF-350](http://docs.micro-measurements.com/?id=2573) with high elongation ratio 20% for plastic application.
 - Sensor supplier: [Micro Measurement](http://docs.micro-measurements.com)
 - Sensor positioning: four methods are compared in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064)
-  - Collection simulation data in [ANSYS](https://www.ansys.com/products/structures):**Tutorial follows**
+  - Collection simulation data in [ANSYS](https://www.ansys.com/products/structures):[Tutorial](Code/ANSYS_Data_Collection.md)
     - In Workbench: Static Structure -> Engineering data (material elastic properties: Young's modulus, Possio's ratio, Density) 
     - In DesignModeler: Geometry design or import
     - In Mechanics: assign material properties to parts -> mesh properties define -> constrains and force define -> solution define.
