@@ -44,7 +44,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 - Sensor supplier: [Micro Measurement](http://docs.micro-measurements.com)
 - Sensor positioning: four methods are compared in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064)
   - Collection of simulation data:[Tutorial](Code/ANSYS_Data_Collection.md)
-  - Data-driven methods and Model-based methods are compared in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064). [Tutorial](Code/Optimal_positioning.md)
+  - Data-driven methods and Model-based methods are compared in [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064): [Tutorial](Code/Optimal_positioning.md)
   
   <p align="center"><img src="Pics/Positioning_methods.png" width="800" height="400" align="center">
 
