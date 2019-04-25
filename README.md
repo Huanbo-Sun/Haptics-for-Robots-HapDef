@@ -76,9 +76,11 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 <p align="center"><img src="Pics/testbed.png" width="700" height="500" align="center"> 
   
 - Driver:
-  - 3D printer: makerbot_driver
-  - Dynamixel: pypot.dynamixel
+  - 3D printer: [makerbot_driver](https://pypi.org/project/makerbot_driver/)
+  - Dynamixel: [pypot.dynamixel](https://poppy-project.github.io/pypot/dynamixel.html)
+
 - Forcetip: [FC22](https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=FC22&DocType=DS&DocLang=English)
+
 - Code in python (jupyter notebook)
   ``` jupyter notebook
    cd /mnt/StorageDevice/PhD/06_Paper/v\?_Frontiers\ in\ NR2018/ICRA2019/SingleTouch/Experiemental_Data
