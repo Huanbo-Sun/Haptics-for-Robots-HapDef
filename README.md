@@ -62,11 +62,11 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
   - Operational Amplifier: [MCP609](http://ww1.microchip.com/downloads/en/DeviceDoc/11177f.pdf)
   - Board Design Concept and Breadboard: [Breadboard Concept](Files/Breadboard_Concept.pdf) 
   
-   <p align="center"><img src="Pics/Breadboard.png" width="800" height="400" align="center">
+   <p align="center"><img src="Pics/Breadboard.png" width="400" height="500" align="center">
   
   - ADC and MCU: [Arduino Due 3.3V](https://store.arduino.cc/due)
     - Code for ino: [Tutorial](Code/MCU_Data_Aquisition.md)
-  - Communication: USB2.0 to hoster.
+  - Communication: USB2.0(micro) to Master(Laptop).
   
 ## Automatic data collection system in application aspect **Tutorial follows**
 - 4 DoF test bed to collect data:
