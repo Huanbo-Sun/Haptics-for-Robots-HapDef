@@ -55,7 +55,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
   
   - Assembly Process:
 
- <p align="center"><img src="Pics/Assemly_Process.png" width="800" height="600" align="center">
+ <p align="center"><img src="Pics/Assembly_Process.png" width="800" height="600" align="center">
 
 - Data aquisition: [Wheastone bridge](https://en.wikipedia.org/wiki/Wheatstone_bridge):**Tutorial follows**
   - Layout Type: Quarter bridge (1. use global temperatur compensation, 2. other solutions [BME280](https://www.bosch-sensortec.com/bst/products/all_products/bme280) due to physical limits)
