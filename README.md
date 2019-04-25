@@ -65,7 +65,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
    <p align="center"><img src="Pics/Breadboard.png" width="400" height="500" align="center">
   
   - ADC and MCU: [Arduino Due 3.3V](https://store.arduino.cc/due)
-    - Code for ino: [Tutorial](Code/MCU_Data_Aquisition.md)
+    - Code for ino: [Tutorial](Code/MCU_Data_Acquisition.md)
   - Communication: USB2.0(micro) to Master(Laptop).
   
 ## Automatic data collection system in application aspect **Tutorial follows**
