@@ -60,10 +60,13 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 - Data aquisition: [Wheastone bridge](https://en.wikipedia.org/wiki/Wheatstone_bridge):
   - Layout Type: Quarter bridge (Regarding to temperatur compensation: 1.Use a global one(not suit for long-last contact detection with heat transferring effect), 2. Use [BME280](https://www.bosch-sensortec.com/bst/products/all_products/bme280) can sense temperature and humidity as well as pressure locally, which is another new project under construction.)
   - Operational Amplifier: [MCP609](http://ww1.microchip.com/downloads/en/DeviceDoc/11177f.pdf)
-  - Board Design Concept (Breadboard): [Breadboard Concept](File/Breadboard_Concept) 
+  - Board Design Concept and Breadboard: [Breadboard Concept](Files/Breadboard_Concept.pdf) 
+  
+   <p align="center"><img src="Pics/Breadboard.png" width="400" height="500" align="center">
+  
   - ADC and MCU: [Arduino Due 3.3V](https://store.arduino.cc/due)
-    - Code for ino: [Tutorial](Code/MCU_Data_Aquisition.md)
-  - Communication: USB2.0 to hoster.
+    - Code for ino: [Tutorial](Code/MCU_Data_Acquisition.md)
+  - Communication: USB2.0(micro) to Master(Laptop).
   
 ## Automatic data collection system in application aspect **Tutorial follows**
 - 4 DoF test bed to collect data:
@@ -73,9 +76,11 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 <p align="center"><img src="Pics/testbed.png" width="700" height="500" align="center"> 
   
 - Driver:
-  - 3D printer: makerbot_driver
-  - Dynamixel: pypot.dynamixel
+  - 3D printer: [makerbot_driver](https://pypi.org/project/makerbot_driver/)
+  - Dynamixel: [pypot.dynamixel](https://poppy-project.github.io/pypot/dynamixel.html)
+
 - Forcetip: [FC22](https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=FC22&DocType=DS&DocLang=English)
+
 - Code in python (jupyter notebook)
   ``` jupyter notebook
    cd /mnt/StorageDevice/PhD/06_Paper/v\?_Frontiers\ in\ NR2018/ICRA2019/SingleTouch/Experiemental_Data
