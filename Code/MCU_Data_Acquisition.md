@@ -10,6 +10,7 @@ int val7 = 0;
 int val8 = 0;
 int val9 = 0;
 int val10 =0;
+
 void setup()
 {
   Serial.begin(115200);              //  setup serial
