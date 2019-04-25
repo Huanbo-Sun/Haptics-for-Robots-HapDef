@@ -60,6 +60,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 - Data aquisition: [Wheastone bridge](https://en.wikipedia.org/wiki/Wheatstone_bridge):
   - Layout Type: Quarter bridge (Regarding to temperatur compensation: 1.Use a global one(not suit for long-last contact detection with heat transferring effect), 2. Use [BME280](https://www.bosch-sensortec.com/bst/products/all_products/bme280) can sense temperature and humidity as well as pressure locally, which is another new project under construction.)
   - Operational Amplifier: [MCP609](http://ww1.microchip.com/downloads/en/DeviceDoc/11177f.pdf)
+  - Board Design Concept (Breadboard): [Breadboard Concept](File/Breadboard_Concept) 
   - ADC and MCU: [Arduino Due 3.3V](https://store.arduino.cc/due)
     - Code for ino: [Tutorial](Code/MCU_Data_Aquisition.md)
   - Communication: USB2.0 to hoster.
