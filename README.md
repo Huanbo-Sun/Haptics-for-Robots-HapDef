@@ -57,63 +57,11 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 
  <p align="center"><img src="Pics/Assembly_Process.png" width="800" height="600" align="center">
 
-- Data aquisition: [Wheastone bridge](https://en.wikipedia.org/wiki/Wheatstone_bridge):**Tutorial follows**
-  - Layout Type: Quarter bridge (1. use global temperatur compensation, 2. other solutions [BME280](https://www.bosch-sensortec.com/bst/products/all_products/bme280) due to physical limits)
+- Data aquisition: [Wheastone bridge](https://en.wikipedia.org/wiki/Wheatstone_bridge):
+  - Layout Type: Quarter bridge (Regarding to temperatur compensation: 1.Use a global one(not suit for long-last contact detection with heat transferring effect), 2. Use [BME280](https://www.bosch-sensortec.com/bst/products/all_products/bme280) can sense temperature and humidity as well as pressure locally, which is another new project under construction.)
   - Operational Amplifier: [MCP609](http://ww1.microchip.com/downloads/en/DeviceDoc/11177f.pdf)
   - ADC and MCU: [Arduino Due 3.3V](https://store.arduino.cc/due)
-    - ino:
-    ``` sketch
-    int val1 = 0;
-    int val2 = 0;
-    int val3 = 0;
-    int val4 = 0;
-    int val5 = 0;
-    int val6 = 0;
-    int val7 = 0;
-    int val8 = 0;
-    int val9 = 0;
-    int val10 =0;
-    void setup()
-    {
-      Serial.begin(115200);              //  setup serial
-    }
-
-    void loop()
-    {
-      analogReadResolution(12);
-      val1 = analogRead(0);
-      val2 = analogRead(1);
-      val3 = analogRead(2);
-      val4 = analogRead(3);
-      val5 = analogRead(5);
-      val6 = analogRead(6);
-      val7 = analogRead(7);
-      val8 = analogRead(8);
-      val9 = analogRead(9);
-      val10 = analogRead(10);
-      Serial.print(val1);
-      Serial.print(",");
-      Serial.print(val2);
-      Serial.print(",");
-      Serial.print(val3);
-      Serial.print(",");
-      Serial.print(val4);
-      Serial.print(",");
-      Serial.print(val5);
-      Serial.print(",");
-      Serial.print(val6);
-      Serial.print(",");
-      Serial.print(val7);
-      Serial.print(",");
-      Serial.print(val8);
-      Serial.print(",");
-      Serial.print(val9);
-      Serial.print(",");
-      Serial.println(val10);
-
-      delay(100);
-    }
-    ```
+    - Code for ino: [Tutorial](Code/MCU_Data_Aquisition.md)
   - Communication: USB2.0 to hoster.
   
 ## Automatic data collection system in application aspect **Tutorial follows**
