@@ -1,5 +1,5 @@
 # MCU_Data_Acquisition in [Arduino IDE](https://www.arduino.cc/en/Main/Software)
-    ```
+```
     int val1 = 0;
     int val2 = 0;
     int val3 = 0;
@@ -50,4 +50,4 @@
 
       delay(100);
     }
-    ```
+```
