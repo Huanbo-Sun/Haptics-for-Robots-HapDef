@@ -68,7 +68,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
     - Code for ino: [Tutorial](Code/MCU_Data_Acquisition.md)
   - Communication: USB2.0(micro) to Master(Laptop).
   
-## Automatic data collection system in application aspect **Tutorial follows**
+## Automatic data collection system in application aspect
 - 4 DoF test bed to collect data:
   - 3 DoF 3D printer: [Flashforge Creator Pro](http://www.flashforge.com/creator-pro-3d-printer/)
   - 1 Dof Dynamixel [MX28AT](http://support.robotis.com/en/product/actuator/dynamixel/mx_series/mx-28at_ar.htm)
