@@ -88,14 +88,22 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 
 ## Data postprocessing in functionality aspect **UNDER CONSTRUCTION**
 - Single-contact detection: KNN, SVR, FNN (direct position and magnitude prediction).
-  - Documentation, see [Sun* & Martius 1](https://ieeexplore.ieee.org/abstract/document/8625064) & [Sun* & Martius 2](https://ieeexplore.ieee.org/abstract/document/8625064)
-  - Model training and calling, see [Model](Code/Single_contact_Model.md)
+  - Documentation, see [Sun* & Martius 1](https://ieeexplore.ieee.org/abstract/document/8625064) & [Sun* & Martius 2]()
+  - Model training and calling, see [Single_contact_Model](Code/Single_contact_Model.md)
   - Results
     - [Video]()
     - Image:
 
 <p align="center"><img src="Pics/singlecontact.png" width="800" height="300" align="center"> 
   
-- Multiple-contact detection: FNN (Tranfer Net,Reconstruction Net, Sensitivity Net integration to extract multiple-contact information), see [Sun* & Martius 2]
-
+- Multiple-contact detection: FNN (Tranfer Net,Reconstruction Net, Sensitivity Net integration to extract multiple-contact information)
+  - Concept:
+  
+<p align="center"><img src="Pics/multiplecontact.png" width="700" height="700" align="center"> 
+  
+  - Documentation, see [Sun* & Martius 2]()
+  - Model integration, see [Multiple_contact_Model](Code/Multiple_contact_Model.md)
+  - Results:
+    - [Video]()
+    - Image:
 <p align="center"><img src="Pics/multiplecontact.png" width="700" height="700" align="center"> 
