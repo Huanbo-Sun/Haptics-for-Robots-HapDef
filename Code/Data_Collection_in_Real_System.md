@@ -9,10 +9,6 @@ import serial
 import makerbot_driver
 import threading
 import time
-
-from drawnow import *
-import pyqtgraph as pg
-
 %matplotlib notebook
 
 # Data:
