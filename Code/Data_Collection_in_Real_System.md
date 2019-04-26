@@ -1,5 +1,5 @@
 # Data Collection in Real System
-
+## Data Collection
 ``` jupyter notebook
 # Packages:
 import numpy as np
@@ -80,4 +80,83 @@ for i in range(3000):
     # set to start position w.r.t. z
     testbed.queue_extended_point([position[i,1], 0, 2000, 0, 0], 800, 0, 0)
     time.sleep(2)
+```
+## Data in Real Time visualization
+``` jupyter notebook
+SG1,SG2,SG3,SG4,SG6,SG7,SG8,SG9,SG10,FT = [],[],[],[],[],[],[],[],[],[]
+cnt = 0
+timepoints = []
+view_time = 40
+duration = 240000
+
+fig = plt.figure(figsize=(6,5))
+fig.suptitle('Live data', fontsize='18', fontweight='bold')
+plt.xlabel('Time[s]', fontsize='14', fontstyle='italic')
+plt.ylabel('Signal[V]', fontsize='14', fontstyle='italic')
+plt.axes().grid(True)
+line1, = plt.plot(SG1,marker='',label='SG1')
+line2, = plt.plot(SG2,marker='',label='SG2')
+line3, = plt.plot(SG3,marker='',label='SG3')
+line4, = plt.plot(SG4,marker='',label='SG4')
+line6, = plt.plot(SG6,marker='',label='SG6')
+line7, = plt.plot(SG7,marker='',label='SG7')
+line8, = plt.plot(SG8,marker='',label='SG8')
+line9, = plt.plot(SG9,marker='',label='SG9')
+line10, = plt.plot(SG10,marker='',label='SG10')
+lineFT, = plt.plot(FT,marker='',label='FT')
+plt.xlim([0,view_time])
+plt.ylim([-0.1,5.1])
+plt.show()
+
+# arduinoData = serial.Serial('/dev/ttyACM1', 115200)
+plt.ion()
+start_time = time()
+SGData.flushInput()
+run = True
+while run:
+    SGData.reset_input_buffer()
+    arduinoString = str(SGData.readline()).encode("utf-8")
+    dataArray = arduinoString.split(',')
+    try:
+        SG1.append(float(dataArray[0])*5.0/4096.0)
+        SG2.append(float(dataArray[1])*5.0/4096.0)
+        SG3.append(float(dataArray[2])*5.0/4096.0)
+        SG4.append(float(dataArray[3])*5.0/4096.0)
+        SG6.append(float(dataArray[4])*5.0/4096.0)
+        SG7.append(float(dataArray[5])*5.0/4096.0)
+        SG8.append(float(dataArray[6])*5.0/4096.0)
+        SG9.append(float(dataArray[7])*5.0/4096.0)
+        SG10.append(float(dataArray[8])*5.0/4096.0)
+        FT.append((float(dataArray[9]))*10.0/4096.0)
+        timepoints.append(time()-start_time)
+        current_time = timepoints[-1]
+        line1.set_xdata(timepoints)
+        line1.set_ydata(SG1)
+        line2.set_xdata(timepoints)
+        line2.set_ydata(SG2)
+        line3.set_xdata(timepoints)
+        line3.set_ydata(SG3)
+        line4.set_xdata(timepoints)
+        line4.set_ydata(SG4)
+        line6.set_xdata(timepoints)
+        line6.set_ydata(SG6)
+        line7.set_xdata(timepoints)
+        line7.set_ydata(SG7)
+        line8.set_xdata(timepoints)
+        line8.set_ydata(SG8)
+        line9.set_xdata(timepoints)
+        line9.set_ydata(SG9)
+        line10.set_xdata(timepoints)
+        line10.set_ydata(SG10)
+        lineFT.set_xdata(timepoints)
+        lineFT.set_ydata(FT)
+        
+        if current_time > view_time:
+            plt.xlim([current_time-view_time,current_time])
+        if timepoints[-1] > duration: run=False
+    
+    except: pass
+    
+    fig.canvas.draw()
+arduinoData.close()
 ```
