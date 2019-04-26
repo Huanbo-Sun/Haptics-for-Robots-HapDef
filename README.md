@@ -87,7 +87,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
     - Video Editor: [Kdenlive](https://kdenlive.org/en/)
 
 ## Data postprocessing in functionality aspect.
-- single-contact detection: KNN, SVR, FNN (direct position and magnitude prediction),see [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064)
+- Single-contact detection: KNN, SVR, FNN (direct position and magnitude prediction),see [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064)
 
 <p align="center"><img src="Pics/singlecontact.png" width="700" height="400" align="center"> 
   
