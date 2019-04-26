@@ -82,8 +82,8 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 - Forcetip: [FC22](https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=FC22&DocType=DS&DocLang=English)
 
 - Data Collection in Real System Interfacing with Python:
-  -[Tutorial](Code/Data_Collection_in_Real_System.md)
-  -[Video](https://www.youtube.com/watch?v=enS9tn03XHs&feature=youtu.be)
+  - [Tutorial](Code/Data_Collection_in_Real_System.md)
+  - [Video](https://www.youtube.com/watch?v=enS9tn03XHs&feature=youtu.be)
 
 ## Data postprocessing in functionality aspect.
 - single-contact detection: KNN, SVR, FNN (direct position and magnitude prediction),see [Sun & Martius](https://ieeexplore.ieee.org/abstract/document/8625064)
