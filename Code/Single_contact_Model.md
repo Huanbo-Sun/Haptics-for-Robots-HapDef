@@ -1,5 +1,6 @@
 # Single-Contact System Integration
-- Package
+## Package
+### Import
 ``` Jupyter Notebook(Python2.7)
 import numpy as np
 import seaborn as sns
@@ -31,7 +32,9 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 %matplotlib notebook
 from IPython.core.display import display, HTML
 display(HTML("<style>.container { width:100% !important; }</style>"))
-
+```
+### DIY
+``` Jupyter Notebook(Python2.7)
 def Data(sensorvalue,basis):
     Force = sensorvalue[10]
     SG = sensorvalue[:10] - basis[:10] +1700.0
@@ -175,8 +178,11 @@ def standardization(arr1,arr2):
 def get_batch(arr_in,arr_out,size):
     indices = np.random.randint(arr_in.shape[0],size = size)
     return arr_in[indices], arr_out[indices]
+    
+def force_scale(SG_Value, basis):
+    return (SG_Value-basis)*4.9/100.0
 ```
-- Hardware Connection
+## Hardware Connection
 ``` Jupyter Notebook(Python2.7)
 port = pypot.dynamixel.get_available_ports()
 print('ports found',port)
@@ -200,7 +206,7 @@ time.sleep(2)
 testbed.queue_extended_point([0, 0, 2000, 0, 0], 800, 0, 0)
 time.sleep(2)
 ```
-- Prediction Model Load
+## Prediction Model Load
 ``` Jupyter Notebook(Python2.7)
 filename = 'Model/knn_single_touch_model.sav'
 neigh = pickle.load(open(filename, 'rb'))
@@ -228,4 +234,221 @@ Single_Direct_writer = tf.summary.FileWriter("Model/Single_Direct_training",Sing
 Single_Direct_sess.run(tf.global_variables_initializer())
 saver = tf.train.Saver()
 saver.restore(Single_Direct_sess,"Model/Single_Direct.ckpt")
+```
+## Prediction
+### Data Load
+``` Jupyter Notebook(Python2.7)
+position= np.loadtxt("00_testbed_force_positions.txt",dtype=float)
+praw = np.loadtxt("00_ranked_force_positions.txt",dtype=float)
+all_sensor_position = np.loadtxt("1_sensor_map_nodal.txt",dtype=float)
+x_mean = np.loadtxt("02_single_touch_x_mean.txt",dtype=float)
+y_mean = np.loadtxt("02_single_touch_y_mean.txt",dtype=float)
+x_std = np.loadtxt("02_single_touch_x_std.txt",dtype=float)
+y_std = np.loadtxt("02_single_touch_y_std.txt",dtype=float)
+
+x_train = np.loadtxt("02_single_touch_x_train_data_std.txt",dtype=float)
+y_train = np.loadtxt("02_single_touch_y_train_data_std.txt",dtype=float)
+```
+### Initialization
+``` Jupyter Notebook(Python2.7)
+#testbed: Direction:(x+:right)(y+:away)(z-:plate up) 
+testbed.queue_extended_point([0, 0, 2000, 0, 0], 800, 0, 0)
+time.sleep(5)
+#motor
+motor.set_goal_position({1: 0})
+```
+### Automatic Process
+``` Jupyter Notebook(Python2.7)
+a = []
+for i in range(100):
+    SGData.flushInput()
+    SGData.reset_input_buffer()
+    va = str(SGData.readline()).encode("utf-8")
+    dataArray = va.split(',')
+    va_Value = [ float(x) for x in dataArray]
+    if len(va_Value)==12:
+        a.append(va_Value)
+#     print(va_Value[10])
+basis = np.mean(np.asarray(a).reshape(len(a),12),axis=0).flatten()
+
+fig = plt.figure(figsize=(12,6))
+gs = gridspec.GridSpec(1, 3, width_ratios=[8, 1, 1]) 
+plot0 = plt.subplot(gs[0])
+plot1 = plt.subplot(gs[1])
+plot2 = plt.subplot(gs[2])
+
+for k in range(110,praw.shape[0]):
+    sensormap(all_sensor_position[:,1:4]*1000.0,0.2,'black',fig=plot0)
+    i =3*k +1
+    motor.set_goal_position({1: position[i,3]})
+    time.sleep(1)
+    testbed.queue_extended_point([position[i,1], 0, 3000, 0, 0], 800, 0, 0)
+    time.sleep(1)
+    testbed.queue_extended_point([position[i,1], 0, position[i,2], 0, 0], 800, 0, 0)
+    time.sleep(1)
+    
+    for j in range(30):
+        plot0.clear()
+        plot1.clear()
+        plot2.clear()
+        sensormap(all_sensor_position[:,1:4]*1000.0,0.2,'black',fig=plot0)
+        testbed.queue_extended_point([position[i,1], 0, position[i,2]-15*j, 0, 0], 800, 0, 0)
+        SGData.flushInput()
+        SGData.reset_input_buffer()
+        SG = str(SGData.readline()).encode("utf-8")
+        dataArray = SG.split(',')
+        try:
+            SG_Value = [ float(x) for x in dataArray]
+        except:
+            continue
+            
+        if len(SG_Value)==12:
+            if np.around(force_scale(SG_Value[10], basis[10]),decimals=1)>1.0:
+                knn_prediction,svr_prediction,mlp_prediction = Data(SG_Value[:11],basis[:11])
+                
+                three_twof(praw[i,1:4][None,:]*1000.0,'^',"G","green",fig=plot0)
+                three_twof(knn_prediction[:3],'.',"knn","red",fig=plot0)
+                three_twof(svr_prediction[:3],'.',"svr","blue",fig=plot0)
+                three_twof(mlp_prediction[:3],'.',"mlp","orange",fig=plot0)
+                plot0.set_xlabel("Arc length[mm]")
+                plot0.set_ylabel("y[mm]")
+                plot0.set_title("Position Index:"+str(i+1)+"    "+"True Force:"+str(np.around((SG_Value[10]-basis[10])*4.9/100.0,decimals=1))+"[N]"+"    "+"Predicted Force:"+str(np.around(mlp_prediction.flatten()[4],decimals=1))+"[N]")
+                plot0.legend()
+                plot1.bar([0],[force_scale(SG_Value[10], basis[10])])
+                plot1.set_ylim((0,25))
+                plot1.set_title("True Force[N]")
+                plot2.bar([0],[mlp_prediction.flatten()[4]])
+                plot2.set_ylim((0,25))
+                plot2.set_title("Pred Force[N]")
+                fig.canvas.draw()
+                time.sleep(1e-6)
+            else:
+                if force_scale(SG_Value[10], basis[10]) <0.2:
+                    basis = 0.9*basis + 0.1*np.asarray(SG_Value)
+                sensormap(all_sensor_position[:,1:4]*1000.0,0.2,'black',fig=plot0)
+                plot0.set_xlabel("Arc length[mm]")
+                plot0.set_ylabel("y[mm]")
+                plot0.set_title("No force applied",color='red')
+                plot0.legend()
+                plot1.bar([0],[0])
+                plot1.set_ylim((0,25))
+                plot1.set_title("True Force[N]")
+                plot2.bar([0],[0])
+                plot2.set_ylim((0,25))
+                plot2.set_title("Pred Force[N]")
+                fig.canvas.draw()
+                time.sleep(1e-6)
+        time.sleep(0.01)
+    plot0.clear()
+    plot1.clear()
+    plot2.clear()
+    sensormap(all_sensor_position[:,1:4]*1000.0,0.2,'black',fig=plot0)
+    plot0.set_xlabel("Arc length[mm]")
+    plot0.set_ylabel("y[mm]")
+    plot0.set_title("No force applied",color='red')
+    plot0.legend()
+    plot1.bar([0],[0])
+    plot1.set_ylim((0,25))
+    plot1.set_title("True Force[N]")
+    plot2.bar([0],[0])
+    plot2.set_ylim((0,25))
+    plot2.set_title("Pred Force[N]")
+    fig.canvas.draw()
+    time.sleep(1e-5)
+    
+    SGData.flushInput()
+    SGData.reset_input_buffer()
+    SG = str(SGData.readline()).encode("utf-8")
+    dataArray = SG.split(',')
+    try:
+        SG_Value = [ float(x) for x in dataArray]
+    except:
+        continue    
+    if force_scale(SG_Value[10], basis[10]) <0.2:
+        basis = 0.9*basis + 0.1*np.asarray(SG_Value)
+
+    testbed.queue_extended_point([position[i,1], 0, 3000, 0, 0], 800, 0, 0)
+    time.sleep(4)
+    
+testbed.queue_extended_point([position[i,1], 0, 3000, 0, 0], 800, 0, 0)
+```
+### Manuell Process
+``` Jupyter Notebook(Python2.7)
+a = []
+for i in range(100):
+    SGData.flushInput()
+    SGData.reset_input_buffer()
+    va = str(SGData.readline()).encode("utf-8")
+    dataArray = va.split(',')
+    va_Value = [ float(x) for x in dataArray]
+    if len(va_Value)==12:
+        a.append(va_Value)
+#     print(va_Value[10])
+basis = np.mean(np.asarray(a).reshape(len(a),12),axis=0)
+
+fig = plt.figure(figsize=(12,6))
+gs = gridspec.GridSpec(1, 2, width_ratios=[8, 1]) 
+plot0 = plt.subplot(gs[0])
+plot1 = plt.subplot(gs[1])
+
+while(True):
+    sensormap(all_sensor_position[:,1:4]*1000.0,0.2,'black',fig=plot0)
+    
+    for j in range(50):
+        plot0.clear()
+        plot1.clear()
+        sensormap(all_sensor_position[:,1:4]*1000.0,0.2,'black',fig=plot0)
+        SGData.flushInput()
+        SGData.reset_input_buffer()
+        SG = str(SGData.readline()).encode("utf-8")
+        dataArray = SG.split(',')
+        try:
+            SG_Value = [ float(x) for x in dataArray]
+        except:
+            continue
+            
+        if len(SG_Value)==12:
+            knn_prediction,svr_prediction,mlp_prediction = Data(SG_Value[:11],basis[:11])
+            force = mlp_prediction.flatten()[4]
+            if force >2.0:
+                three_twof(knn_prediction[:3],'.',"knn","red",fig=plot0)
+                three_twof(svr_prediction[:3],'.',"svr","blue",fig=plot0)
+                three_twof(mlp_prediction[:3],'.',"mlp","orange",fig=plot0)
+                plot0.set_xlabel("Arc length[mm]")
+                plot0.set_ylabel("y[mm]")
+                plot0.set_title("Predicted Force:"+str(np.around(force,decimals=1))+"[N]")
+                plot0.legend()
+                plot1.bar([0],[force])
+                plot1.set_ylim((0,40))
+                plot1.set_title("True Force[N]")
+                fig.canvas.draw()
+                time.sleep(1e-6)
+            else:
+                basis = 0.9*basis + 0.1*np.asarray(SG_Value)
+                
+                sensormap(all_sensor_position[:,1:4]*1000.0,0.2,'black',fig=plot0)
+                plot0.set_xlabel("Arc length[mm]")
+                plot0.set_ylabel("y[mm]")
+                plot0.set_title("No force detected",color='red')
+                plot0.legend()
+                plot1.bar([0],[0])
+                plot1.set_ylim((0,40))
+                plot1.set_title("True Force[N]")
+                fig.canvas.draw()
+                time.sleep(1e-6)
+        time.sleep(0.005)
+    plot0.clear()
+    plot1.clear()
+    sensormap(all_sensor_position[:,1:4]*1000.0,0.2,'black',fig=plot0)
+    plot0.set_xlabel("Arc length[mm]")
+    plot0.set_ylabel("y[mm]")
+    plot0.set_title("No force detected",color='red')
+    plot0.legend()
+    plot1.bar([0],[0])
+    plot1.set_ylim((0,40))
+    plot1.set_title("True Force[N]")
+    fig.canvas.draw()
+    time.sleep(1e-6)
+    
+testbed.queue_extended_point([position[i,1], 0, 3000, 0, 0], 800, 0, 0)
 ```
