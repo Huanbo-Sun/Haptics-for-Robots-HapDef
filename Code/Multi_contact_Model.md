@@ -150,4 +150,28 @@ Single_Direct_sess.run(tf.global_variables_initializer())
 saver = tf.train.Saver()
 saver.restore(Single_Direct_sess,"Model/Single_FDA.ckpt")
 ```
-##
+### Training
+``` Jupyter Notebook(Python2.7)
+def get_batch(arr_in,arr_out,size):
+    indices = np.random.randint(arr_in.shape[0],size = size)
+    return arr_in[indices], arr_out[indices]
+
+batch_size = 100
+total_iterations = 1000000
+validate_every = 100
+
+for i in range(total_iterations):
+    T_inbatch,T_outbatch = get_batch(x_train_std,y_train_std,batch_size)
+    Single_Direct_sess.run(T_train,feed_dict={T_in: T_inbatch, T_out: T_outbatch})
+    
+    if i % validate_every == 0:
+        T_inbatch,T_outbatch = get_batch(x_train_std,y_train_std,batch_size)
+        T_train_acc, T_train_summ = Single_Direct_sess.run([T_loss,T_training_summary],feed_dict={T_in: T_inbatch, T_out: T_outbatch})
+        Single_Direct_writer.add_summary(T_train_summ,i)
+        
+        T_inbatch,T_outbatch = get_batch(x_valid_std,y_valid_std,batch_size)
+        T_valid_acc, T_valid_summ = Single_Direct_sess.run([T_loss,T_validation_summary],feed_dict={T_in: T_inbatch, T_out: T_outbatch})
+        Single_Direct_writer.add_summary(T_valid_summ,i)
+saver = tf.train.Saver()
+saver.save(Single_Direct_sess,"Model/Singleonetwothree_2403211.ckpt")
+```
