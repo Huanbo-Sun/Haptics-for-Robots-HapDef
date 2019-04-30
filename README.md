@@ -94,11 +94,11 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
     - [Video]()
     - Image:
 
-<p align="center"><img src="Pics/singlecontact.png" width="800" height="300" align="center"> 
+<p align="center"><img src="Pics/singlecontact.png" width="800" height="500" align="center"> 
   
 - Multiple-contact detection: FNN (Tranfer Net,Reconstruction Net, Sensitivity Net integration to extract multiple-contact information)
   - Concept:
-  <p align="center"><img src="Pics/multiplecontactframework.png" width="800" height="400" align="center"> 
+  <p align="center"><img src="Pics/multiplecontactframework.png" width="800" height="500" align="center"> 
   
   - Documentation, see [Sun* & Martius 2]()
   - Model integration, see [Multiple_contact_Model](Code/Multiple_contact_Model.md)
