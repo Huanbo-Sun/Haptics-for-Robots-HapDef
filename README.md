@@ -106,3 +106,40 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
     - [Video]()
     - Image:
 <p align="center"><img src="Pics/multiplecontact.png" width="700" height="700" align="center"> 
+
+## Future Work
+### Hardware site
+#### Temperature compensation
+- Problem: Currently, we use half-bridge Wheastone bridge layout to compensate the temperature effect. But the temperature strain gauges are not placed closely to the deformation strain gauges, which only compensate the global temperature effect. For example, the precision would be influenced quite a lot when we put finger on the skeleton for a long time.
+- Solution: Take tiny temperature sensor and place them near each deformation strain gauges.
+
+#### Drift effect(Hysteresis effect)
+- Problem: The material has a mechanical non elastic property, which prevent the structure recovering its shape after releasing force. 
+- Solution: Collect data and train extra model to compensate this effect.
+
+#### Hardware optimization
+- Problem: Circuit layout is currently hand wired and bulky,using potentialmeter to initialize the non-deformation state.
+- Solution: 
+  - PCB [Eagle](https://www.autodesk.com/products/eagle/overview) design and printing.
+  - Using [Digital Potentialmeter](https://www.mouser.de/Semiconductors/Digital-Potentiometer-ICs/_/N-4c498/) replacing mechanical potentialmeter.
+  
+#### Hardware integration
+- Problem: For each robot skeleton, it needs to process individually its functionality. For robotic haptic integration, we need to define a communication protocol/interface.
+- Solution: Daisy chain protocol integration.
+  
+ ### Algorithm site
+ #### Non positive semi definite kernel
+ - Problem: the covariance matrix (kernel) used in Mutual Information and Entropy for optimal placement sometime apears to be non positive semi defnitite, especially for [Riemanian-manifold](https://en.wikipedia.org/wiki/Riemannian_manifold). 
+ - Solution: unknown.
+ 
+ #### Network structure optimization
+ - Problem: the network trained now is quite large,which could be compacted theoretically.
+ - Solution: literature survey.
+ 
+ ### Metric to evaluate the precision for multiple contact (OPEN QUESTION to Haptic Community)
+ - Problem: We are still not very clear, which information is really needed for robotic application:
+  - Displacement?
+  - Specify position, directional force amplitude?
+  - Torsion?
+  - Multiple contact?
+  - Surface contact?
