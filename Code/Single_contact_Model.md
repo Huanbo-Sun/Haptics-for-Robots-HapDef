@@ -245,9 +245,6 @@ x_mean = np.loadtxt("02_single_touch_x_mean.txt",dtype=float)
 y_mean = np.loadtxt("02_single_touch_y_mean.txt",dtype=float)
 x_std = np.loadtxt("02_single_touch_x_std.txt",dtype=float)
 y_std = np.loadtxt("02_single_touch_y_std.txt",dtype=float)
-
-x_train = np.loadtxt("02_single_touch_x_train_data_std.txt",dtype=float)
-y_train = np.loadtxt("02_single_touch_y_train_data_std.txt",dtype=float)
 ```
 ### Initialization
 ``` Jupyter Notebook(Python2.7)
