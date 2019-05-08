@@ -92,7 +92,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
   - Model training and calling, see [Single_contact_Model](Code/Single_contact_Model.md)
   - Results
     - [Video 1: Automatically](https://www.youtube.com/watch?v=OUCoWmoomNc)
-    - [Video 2: manually](https://www.youtube.com/watch?v=OvVJsDUFhkk)
+    - [Video 2: Manually](https://www.youtube.com/watch?v=OvVJsDUFhkk)
     - Image:
 
 <p align="center"><img src="Pics/singlecontact.png" width="800" height="500" align="center"> 
