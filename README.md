@@ -70,7 +70,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
   
 ## Automatic data collection system in application aspect
 - 4 DoF test bed to collect data:
-  - 3 DoF 3D printer: [Flashforge Creator Pro](http://www.flashforge.com/creator-pro-3d-printer/)
+  - 3 DoF 3D printer: [Flashforge Creator Pro](https://www.flashforge.com/product-detail/4)
   - 1 Dof Dynamixel [MX28AT](http://support.robotis.com/en/product/actuator/dynamixel/mx_series/mx-28at_ar.htm)
   
 <p align="center"><img src="Pics/testbed.png" width="700" height="500" align="center"> 
