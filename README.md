@@ -104,7 +104,6 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
   - Documentation, see [Sun* & Martius 2](https://www.frontiersin.org/articles/10.3389/fnbot.2019.00051/full)
   - Model integration, see [Multiple_contact_Model](Code/Multiple_contact_Model.md)
   - Results:
-    - [Video]()
     - Image:
 <p align="center"><img src="Pics/multiplecontact.png" width="700" height="700" align="center"> 
 
