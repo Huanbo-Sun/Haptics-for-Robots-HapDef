@@ -1,4 +1,4 @@
-# Haptics-with-Strain-Gauge
+# Haptics for Robots: HapDef
 This project shows the principle design of [virtual sensing](https://en.wikipedia.org/wiki/Virtual_sensing) in robotic system with haptic feedback using **sparse sensor configuration**.
 
 <p align="center"><img src="Pics/Project_pipline.png" width="1000" height="600">
