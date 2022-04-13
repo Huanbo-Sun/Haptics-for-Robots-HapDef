@@ -15,7 +15,8 @@ This work was done by Huanbo Sun, Georg Martius at the Max Planck Institute for 
   
 If you make used of our work, please use the citation information [below](#Citation).
  
-It includes five major parts:
+# Content
+ It includes five major parts:
 - Robot's limb design, manufacturing in mechanical aspect.
 - Sensor choice, positioning, assembly, data acquision in mechatronic aspect.
 - Automatic data collection system in application aspect.
