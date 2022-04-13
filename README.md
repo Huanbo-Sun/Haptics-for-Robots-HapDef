@@ -1,4 +1,7 @@
 # Haptics for Robots: HapDef
+<p align="right">
+  *This is the only official content release regarding the design of HapDef.*
+</p>
 This project shows the principle design of [virtual sensing](https://en.wikipedia.org/wiki/Virtual_sensing) in robotic system with haptic feedback using **sparse sensor configuration**.
 
 <p align="center"><img src="Pics/Project_pipline.png" width="1000" height="600">
