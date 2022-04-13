@@ -171,6 +171,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
   doi = {10.1109/HUMANOIDS.2018.8625064}
 }
  ```
+## Paper 2
  ``` Paper 2
 @article{SunMartius2019:MultiContact,
   title = {Machine Learning for Haptics: Inferring Multi-Contact Stimulation From Sparse Sensor Configuration},
