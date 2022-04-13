@@ -2,10 +2,19 @@
 <p align="right">
   *This is the only official content release regarding the design of HapDef.*
 </p>
+
 This project shows the principle design of [virtual sensing](https://en.wikipedia.org/wiki/Virtual_sensing) in robotic system with haptic feedback using **sparse sensor configuration**.
 
 <p align="center"><img src="Pics/Project_pipline.png" width="1000" height="600">
 
+The paper 1 is titled "[Robust Affordable 3D Haptic Sensation via Learning Deformation Patterns](https://ieeexplore.ieee.org/document/8625064)", published at [*IEEE-RAS Humanoids*, 2018](https://ieeexplore.ieee.org/document/8625064). 
+
+The paper 2 is titled "[Machine Learning for Haptics: Inferring Multi-Contact Stimulation From Sparse Sensor Configuration](https://www.frontiersin.org/articles/10.3389/fnbot.2019.00051/full)", published at [*Frontiers in Neurorobotics*, 2019](https://www.frontiersin.org/articles/10.3389/fnbot.2019.00051/full)
+  
+This work was done by Huanbo Sun, Georg Martius at the Max Planck Institute for Intelligent Systems.
+  
+If you make used of our work, please use the citation information [below](#Citation).
+ 
 It includes five major parts:
 - Robot's limb design, manufacturing in mechanical aspect.
 - Sensor choice, positioning, assembly, data acquision in mechatronic aspect.
@@ -146,3 +155,31 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
   - Torsion?
   - Multiple contact?
   - Surface contact?
+ 
+ # Citation
+ ## Paper 1
+ ``` Paper 1
+ @conference{SunMartius2018:SingleTouchSensation,
+  title = {Robust Affordable 3D Haptic Sensation via Learning Deformation Patterns},
+  author = {Sun, Huanbo and Martius, Georg},
+  booktitle = {Proceedings International Conference on Humanoid Robots},
+  pages = {846-853},
+  publisher = {IEEE},
+  address = {New York, NY, USA},
+  year = {2018},
+  note = {Oral Presentation},
+  doi = {10.1109/HUMANOIDS.2018.8625064}
+}
+ ```
+ ``` Paper 2
+@article{SunMartius2019:MultiContact,
+  title = {Machine Learning for Haptics: Inferring Multi-Contact Stimulation From Sparse Sensor Configuration},
+  author = {Sun, Huanbo and Martius, Georg},
+  journal = {Frontiers in Neurorobotics},
+  volume = {13},
+  pages = {51},
+  year = {2019},
+  doi = {10.3389/fnbot.2019.00051},
+  url = {https://www.frontiersin.org/article/10.3389/fnbot.2019.00051}
+}
+ ```
