@@ -186,8 +186,7 @@ In this repository, we introduce haptic feedback in robot's limb, which realizes
 }
  ```
  
- ## Paper 2
- ``` Data and Code
+ ## Paper 2: Data and Code
+ ``` 
  https://edmond.mpdl.mpg.de/api/access/datafile/192624
-}
  ```
